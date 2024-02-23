@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://qm3kxfv0fbvv"]
+
+[ext_resource type="PackedScene" uid="uid://cfhhjjuwknoie" path="res://scenes/mainhero.tscn" id="1_igrn4"]
+[ext_resource type="Texture2D" uid="uid://cilshushog54t" path="res://bg.png" id="2_avco3"]
+[ext_resource type="Script" path="res://scenes/mainhero.gd" id="2_qoqc7"]
+[ext_resource type="Texture2D" uid="uid://be0u4s37y17bc" path="res://earth.png" id="3_17eru"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lo0im"]
+size = Vector2(1917, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhhr6"]
+size = Vector2(358, 568)
+
+[node name="game" type="Node2D"]
+
+[node name="mainhero" parent="." instance=ExtResource("1_igrn4")]
+position = Vector2(431, 507)
+script = ExtResource("2_qoqc7")
+
+[node name="Camera2D" type="Camera2D" parent="mainhero"]
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = -4
+position = Vector2(-96, 63.0001)
+scale = Vector2(49.7495, 53.7352)
+texture = ExtResource("2_avco3")
+
+[node name="collisionfloor" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="collisionfloor"]
+position = Vector2(606, 672)
+texture = ExtResource("3_17eru")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisionfloor"]
+position = Vector2(606.5, 672)
+shape = SubResource("RectangleShape2D_lo0im")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="collisionfloor"]
+position = Vector2(-189, 274)
+shape = SubResource("RectangleShape2D_uhhr6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="collisionfloor"]
+position = Vector2(1379, 274)
+shape = SubResource("RectangleShape2D_uhhr6")
+
+[node name="door" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="door"]
+
+[node name="Area2D" type="Area2D" parent="door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door/Area2D"]

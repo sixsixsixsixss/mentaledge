@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvapxhodvny1n"]
+
+[ext_resource type="Texture2D" uid="uid://c7pgs0rxpunm5" path="res://sprites/black-and-white-bw-clouds-fog.jpg" id="1_pjnn8"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_senk2"]
+[ext_resource type="Texture2D" uid="uid://cimfokki7agdu" path="res://sprites/experimenttitle.png" id="3_p1oy1"]
+[ext_resource type="Texture2D" uid="uid://c33mv8pqb3eqe" path="res://sprites/playbutton.png" id="4_odwc4"]
+[ext_resource type="Texture2D" uid="uid://1453kq1htnt1" path="res://sprites/playbuttonhover.png" id="5_3px8j"]
+[ext_resource type="Script" path="res://scenes/play.gd" id="6_in8xl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1its"]
+size = Vector2(193.5, 80.5)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -6.0
+offset_right = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_senk2")
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(-5, -41)
+scale = Vector2(1.27512, 1.27512)
+texture = ExtResource("1_pjnn8")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(602, 122)
+texture = ExtResource("3_p1oy1")
+metadata/_edit_lock_ = true
+
+[node name="areabutton" type="Area2D" parent="."]
+
+[node name="play" type="TextureButton" parent="areabutton"]
+offset_left = 482.0
+offset_top = 332.0
+offset_right = 682.0
+offset_bottom = 443.0
+texture_normal = ExtResource("4_odwc4")
+texture_hover = ExtResource("5_3px8j")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("6_in8xl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areabutton"]
+position = Vector2(579.25, 386.75)
+shape = SubResource("RectangleShape2D_d1its")
+
+[connection signal="mouse_entered" from="areabutton" to="areabutton/play" method="_on_areabutton_mouse_entered"]
